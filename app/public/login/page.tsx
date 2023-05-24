@@ -1,11 +1,13 @@
 "use client";
 
-import Input from "@/components/input";
 import Form from "@/components/form";
 import Title from "@/components/title";
 import { useForm } from "react-hook-form";
 import Button from "@/components/button";
 import Link from "next/link";
+import InputWithIcon from "@/components/inputWithIcon";
+import EmailIcon from "@/components/icons/email-icon";
+import LockIcon from "@/components/icons/lock-icon";
 
 export default function Login() {
 	const { register, handleSubmit } = useForm();
@@ -17,18 +19,22 @@ export default function Login() {
 				faça login para continuar
 			</p>
 			<Form submit={handleSubmit((data) => console.log(data))}>
-				<Input
+				<InputWithIcon
 					name={"email"}
 					type={"text"}
 					placeholder="Seu email"
 					register={register}
-				/>
-				<Input
+				>
+					<EmailIcon />
+				</InputWithIcon>
+				<InputWithIcon
 					name={"password"}
 					type={"text"}
 					placeholder="Senha"
 					register={register}
-				/>
+				>
+					<LockIcon />
+				</InputWithIcon>
 				<Button type={"submit"}>Entrar</Button>
 			</Form>
 			<p className="text-customGray mt-3">

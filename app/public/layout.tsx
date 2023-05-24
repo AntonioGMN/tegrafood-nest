@@ -8,7 +8,12 @@ export default function RootLayout({
 }) {
 	return (
 		<div className="w-screen h-screen flex">
-			<Image src={foodPresentation} alt="err" className="h-full w-5/12" />
+			<Image
+				src={foodPresentation}
+				alt="err"
+				priority={true}
+				className="h-full w-5/12"
+			/>
 			{children}
 		</div>
 	);
