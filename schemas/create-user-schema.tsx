@@ -1,12 +1,14 @@
-import { object, string, ref } from "yup";
+import { object, string, ref, InferType } from "yup";
 
-const createUserSchema = object({
-	name: string().required(),
-	email: string().required(),
-	password: string().email().required(),
+export const createUserSchema = object({
+	name: string().required("Preencha a nome"),
+	email: string()
+		.email("Formato do email invalido")
+		.required("Preencha o email"),
+	password: string().required("Preencha a senha"),
 	confirmPassword: string()
-		.required()
-		.oneOf([ref("password")], "As senhas não são iguais"),
+		.oneOf([ref("password")], "As senhas não coincidem")
+		.required("Confirmação de senha é obrigatória"),
 });
 
-export default createUserSchema;
+export type CreateUserFormData = InferType<typeof createUserSchema>;

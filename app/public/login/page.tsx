@@ -1,11 +1,11 @@
 "use client";
 
-import Form from "@/components/form";
+import Form from "@/components/form/form";
 import Title from "@/components/title";
 import { useForm } from "react-hook-form";
 import Button from "@/components/button";
 import Link from "next/link";
-import InputWithIcon from "@/components/inputWithIcon";
+import InputWithIcon from "@/components/form/inputWithIcon";
 import EmailIcon from "@/components/icons/email-icon";
 import LockIcon from "@/components/icons/lock-icon";
 
@@ -19,7 +19,7 @@ export default function Login() {
 				faça login para continuar
 			</p>
 			<Form submit={handleSubmit((data) => console.log(data))}>
-				<InputWithIcon
+				{/* <InputWithIcon
 					name={"email"}
 					type={"text"}
 					placeholder="Seu email"
@@ -34,7 +34,7 @@ export default function Login() {
 					register={register}
 				>
 					<LockIcon />
-				</InputWithIcon>
+				</InputWithIcon> */}
 				<Button type={"submit"}>Entrar</Button>
 			</Form>
 			<p className="text-customGray mt-3">
