@@ -21,23 +21,11 @@ import { useCreateUser } from "@/src/hooks/createUser";
 export default function SignUpPage() {
   const formOption = { resolver: yupResolver(createUserSchema) };
   const createUserForm = useForm<CreateUserFormData>(formOption);
+  const { handleSubmit } = createUserForm;
   const { createUser } = useCreateUser();
 
-  const { handleSubmit } = createUserForm;
-
   const onSubmit: SubmitHandler<CreateUserFormData> = async (data) => {
-    const { confirmPassword, ...newUser } = data;
-    const image = data.image[0];
-    console.log(data);
-    console.log(image);
-
-    const formData = new FormData();
-    formData.append("image", data.image[0]); //Adicionando o arquivo ao objeto FormData
-    formData.append("name", data.name);
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-
-    await createUser(formData);
+    await createUser(data);
   };
 
   return (
