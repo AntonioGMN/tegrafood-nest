@@ -91,7 +91,7 @@ export default function SignUpPage() {
 
       <p className="text-customGray mt-3">
         Já tem uma conta?{" "}
-        <Link href={"/public/login"} className="w font-bold text-skyBlue">
+        <Link href={"/login"} className="w font-bold text-skyBlue">
           Entrar
         </Link>
       </p>

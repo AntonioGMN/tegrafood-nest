@@ -1,20 +1,30 @@
 import { useMutation } from "react-query";
-import instance from ".";
-import { useRouter } from "next/navigation";
+import api from ".";
 import { LoginInterface } from "../schemas/login-schema";
 import User from "../models/user";
+import { setCookie } from "nookies";
 
-interface SuccessResponse {
+export interface SignUpDatas {
+  token: string;
+  user: User;
+}
+
+interface LoginResponse {
   token: string;
   user: User;
 }
 
 const loginFunction = (user: LoginInterface) =>
-  instance.post("/login", user).then((response) => response.data);
+  api.post("/login", user).then((response): LoginResponse => response.data);
 
-const handlerSuccess = (data: SuccessResponse) => {
-  localStorage.setItem("token", JSON.stringify(data.token));
-  localStorage.setItem("user", JSON.stringify(data.user));
+const handlerSuccess = (data: SignUpDatas) => {
+  setCookie(null, "food-token", data.token, {
+    maxAge: 60 * 60 * 1,
+  });
+
+  setCookie(null, "food-user", JSON.stringify(data.user), {
+    maxAge: 60 * 60 * 1,
+  });
 };
 
 const handlerError = (error: Error) => {
@@ -22,8 +32,6 @@ const handlerError = (error: Error) => {
 };
 
 export function useLogin() {
-  const router = useRouter();
-
   return useMutation({
     mutationFn: loginFunction,
     onSuccess: handlerSuccess,

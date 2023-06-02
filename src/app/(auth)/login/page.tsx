@@ -18,7 +18,7 @@ export default function Login() {
   const formOption = { resolver: yupResolver(LoginSchema) };
   const loginForm = useForm<LoginInterface>(formOption);
   const { handleSubmit } = loginForm;
-  const { mutate: login } = useLogin();
+  const { mutate: login, data } = useLogin();
 
   const onSubmit: SubmitHandler<LoginInterface> = (user) => {
     login(user);
@@ -56,7 +56,7 @@ export default function Login() {
       </FormProvider>
       <p className="text-customGray mt-3">
         Não tem uma conta?{" "}
-        <Link href={"/public/signUp"} className="w font-bold text-skyBlue">
+        <Link href={"/signUp"} className="w font-bold text-skyBlue">
           Cadastre
         </Link>
       </p>

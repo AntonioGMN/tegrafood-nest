@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
-import QueryProvider from "@/provider/QueyProvider";
+import QueryProvider from "../context/UseQueryContext";
+import AuthProvider from "../context/AuthContext";
 
 const poppins = Poppins({
   weight: ["400", "500", "700"],
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${poppins.variable}`}>
       <body>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );
