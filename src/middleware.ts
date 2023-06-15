@@ -6,10 +6,6 @@ export function middleware(req: NextRequest) {
   const isAuthRouter =
     req.url.includes("/login") || req.url.includes("/signUp");
 
-  console.log("hasToken", hasToken);
-  console.log("isAuthRouter", isAuthRouter);
-  console.log("condição sem token e pagina /", !hasToken && !isAuthRouter);
-
   if (hasToken && isAuthRouter)
     return NextResponse.redirect(new URL("/", req.url));
 

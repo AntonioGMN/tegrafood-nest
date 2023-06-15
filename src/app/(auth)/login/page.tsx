@@ -13,16 +13,25 @@ import EmailIcon from "@/src/components/icons/email-icon";
 import LockIcon from "@/src/components/icons/lock-icon";
 import Input from "@/src/components/form/input";
 import { useLogin } from "@/src/hooks/login";
+import { useAlert } from "@/src/context/AlertContext";
+import { AxiosError } from "axios";
 
 export default function Login() {
   const formOption = { resolver: yupResolver(LoginSchema) };
   const loginForm = useForm<LoginInterface>(formOption);
   const { handleSubmit } = loginForm;
-  const { mutate: login, data } = useLogin();
+  const { mutate: login, isError, error } = useLogin();
+  //const { alertErro } = useAlert();
 
   const onSubmit: SubmitHandler<LoginInterface> = (user) => {
     login(user);
   };
+
+  // if (isError) {
+  //   const axiosError = error as AxiosError<string>;
+  //   const err = axiosError.response?.data;
+  //   if (err) alertErro(err);
+  // }
 
   return (
     <main className="flex-1 flex flex-col justify-center items-center">

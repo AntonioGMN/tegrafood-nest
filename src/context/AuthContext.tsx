@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
   useMemo,
+  useContext,
 } from "react";
 
 import User from "../models/user";
@@ -38,3 +39,5 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     </AuthContext.Provider>
   );
 }
+
+export const useAuth = () => useContext(AuthContext);

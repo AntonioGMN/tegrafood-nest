@@ -1,7 +1,10 @@
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Poppins } from "next/font/google";
 import QueryProvider from "../context/UseQueryContext";
 import AuthProvider from "../context/AuthContext";
+import AlertProvider from "../context/AlertContext";
 
 const poppins = Poppins({
   weight: ["400", "500", "700"],
@@ -22,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={`${poppins.variable}`}>
       <body>
-        <QueryProvider>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryProvider>
+        <AlertProvider>
+          <QueryProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </QueryProvider>
+        </AlertProvider>
       </body>
     </html>
   );
